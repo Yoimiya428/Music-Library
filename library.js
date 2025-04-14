@@ -60,9 +60,9 @@ const printPlaylist = function(id) {
 
   const playlist = library.playlists[id];
   console.log(`${id}: ${playlist.name} - ${playlist.tracks.length} tracks`);
-  for (const trackId of playlist.tracks) {
-    const track = library.tracks[trackId];
-    console.log(`${trackId}: ${track.name} by ${track.artist} (${track.album})`);
+  for (const t_id of playlist.tracks) {
+    const track = library.tracks[t_id];
+    console.log(`${t_id}: ${track.name} by ${track.artist} (${track.album})`);
   }
 
 }
