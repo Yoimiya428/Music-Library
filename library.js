@@ -32,6 +32,10 @@ const library = {
 // p02: Other Playlist - 1 tracks
 const printPlaylists = function() {
 
+  for (const id in library.playlists) {
+    const playlist = library.playlists[id];
+    console.log(`${id}: ${playlist.name} - ${playlist.tracks.length} tracks`);}
+    
 }
 
 
@@ -41,6 +45,10 @@ const printPlaylists = function() {
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 const printTracks = function() {
 
+  for (const id in library.tracks) {
+    const track = library.tracks[id];
+    console.log(`${id}: ${track.name} by ${track.artist} (${track.album})`);}
+
 }
 
 
@@ -48,13 +56,21 @@ const printTracks = function() {
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
-const printPlaylist = function(playlistId) {
+const printPlaylist = function(id) {
+
+  const playlist = library.playlists[id];
+  console.log(`${id}: ${playlist.name} - ${playlist.tracks.length} tracks`);
+  for (const trackId of playlist.tracks) {
+    const track = library.tracks[trackId];
+    console.log(`${trackId}: ${track.name} by ${track.artist} (${track.album})`);
+  }
 
 }
 
 
 // adds an existing track to an existing playlist
-const addTrackToPlaylist = function(trackId, playlistId) {
+const addTrackToPlaylist = function(t_id, p_id) {
+  library.playlists[p_id].tracks.push(t_id);
 
 }
 
@@ -68,12 +84,16 @@ const generateUid = function() {
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
-
+  const id = generateUid();
+  library.tracks[id] = { id, name, artist, album };
 }
 
 
 // adds a playlist to the library
 const addPlaylist = function(name) {
+  const id = generateUid();
+  library.playlists[id] = { id, name, tracks: [] };
+
 
 }
 
@@ -83,6 +103,9 @@ const addPlaylist = function(name) {
 // where the name, artist or album contains the query string (case insensitive)
 // tip: use "string".search("tri") 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
-const printSearchResults = function(query) {
+// const printSearchResults = function(query) {
 
-}
+// }
+
+// addPlaylist("My New Playlist");
+// printPlaylists();
